@@ -2,7 +2,7 @@ package com.mazer
 
 import scala.util.Random
 
-class DepthFirstSearchMaze(height: Int, length: Int, var maz: Array[Array[Int]]) extends Maze {
+class DepthFirstSearch(val height: Int, val length: Int, var maz: Array[Array[Int]]) extends Maze {
 
   def this(height: Int, length: Int) {
     this(height, length, Array.ofDim[Int](height, length))
@@ -14,7 +14,7 @@ class DepthFirstSearchMaze(height: Int, length: Int, var maz: Array[Array[Int]])
     mazify((0, 0) :: stack, (0, 0))
   }
 
-  private def mazify(stack: List[(Int, Int)], currentCell: (Int, Int)): DepthFirstSearchMaze = {
+  private def mazify(stack: List[(Int, Int)], currentCell: (Int, Int)): DepthFirstSearch = {
     if (stack.nonEmpty) {
       val unvisitedNeighbor = getRandomUnvisitedNeighbor(maz, currentCell)
       if (unvisitedNeighbor._1) {
@@ -26,7 +26,7 @@ class DepthFirstSearchMaze(height: Int, length: Int, var maz: Array[Array[Int]])
         mazify(stack.tail, newCurrentCell)
       }
     }
-    new DepthFirstSearchMaze(height, length, maz)
+    new DepthFirstSearch(height, length, maz)
   }
     
   private def neighbors(cell: (Int, Int)) = {
@@ -42,7 +42,7 @@ class DepthFirstSearchMaze(height: Int, length: Int, var maz: Array[Array[Int]])
   }
   
   private def cellVisited(cell: (Int, Int)) = {
-    maz(cell._1)(cell._2) == DepthFirstSearchMaze.Visited
+    maz(cell._1)(cell._2) == DepthFirstSearch.Visited
   }
   
   private def hasValidNeighbors(cell: (Int, Int), originalCell: (Int, Int)) = {
@@ -65,19 +65,10 @@ class DepthFirstSearchMaze(height: Int, length: Int, var maz: Array[Array[Int]])
     else
       (false, (-1, -1))
   }
-  
-  override def toString() = {
-    val strBuilder = new StringBuilder()
-    for (i <- 0 until height) {
-      for (j <- 0 until length) {
-        strBuilder.append(maz(i)(j))
-      }
-      strBuilder.append("\n")
-    }
-    strBuilder.toString()
-  }
 }
 
-object DepthFirstSearchMaze { 
+object DepthFirstSearch { 
   private val Visited = 1
+  
+  def apply(height: Int, length: Int) = new DepthFirstSearch(height, length)
 }
