@@ -2,11 +2,11 @@ package com.mazer
 
 object Main extends App {
   println("Depth first search maze: ")
-  println(DepthFirstSearch(22, 55).maze.toString())
+  println(DepthFirstSearchMaze(22, 55).toString())
 
   println("Kruskal maze: ")
-  println(Kruskal(22, 55).maze.toString())
+  println(KruskalMaze(22, 55).toString())
   
   println("Empty maze: ")
-  println(Empty(22, 55).maze.toString())
+  println(EmptyMaze(22, 55).toString())
 }

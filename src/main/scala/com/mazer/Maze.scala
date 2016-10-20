@@ -1,21 +1,19 @@
 package com.mazer
 
 trait Maze {
-  val height: Int
   val length: Int 
-  var maz: Array[Array[Int]]
-  
-  def maze: Maze 
+  val height: Int
+  def valueAt(cell: Cell): Int
   
   override def toString() = {
     val strBuilder = new StringBuilder()
-    for (i <- 0 until height) {
-      for (j <- 0 until length) {
-        strBuilder.append(maz(i)(j))
-      }
-      strBuilder.append("\n")
+    for {
+      i <- 0 until length
+      j <- 0 until height
+    } {
+      strBuilder.append(valueAt(Cell(i, j)))
+      if (j == height - 1) strBuilder.append("\n")
     }
-    strBuilder.toString()
+    strBuilder.toString
   }
 }
-  
