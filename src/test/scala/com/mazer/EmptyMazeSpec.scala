@@ -5,7 +5,7 @@ import org.scalatest.FlatSpec
 class EmptyMazeSpec extends FlatSpec {
 
   "An empty maze" should "be empty" in {
-    val emptyMaze = Empty(10, 10)
+    val emptyMaze = EmptyMaze(10, 10)
     for {
       i <- 0 until emptyMaze.length
       j <- 0 until emptyMaze.height
