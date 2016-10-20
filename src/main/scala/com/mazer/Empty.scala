@@ -1,14 +1,8 @@
 package com.mazer
 
-class Empty(val height: Int, val length: Int, var maz: Array[Array[Int]]) extends Maze {
-
-  def this(height: Int, length: Int) = {
-    this(height, length, Array.ofDim[Int](height, length))
-  }
+class Empty(val length: Int, val height: Int) extends Maze {
   
-  override def maze = {
-    this
-  }
+  def valueAt(cell: Cell) = 0
 }
 
 object Empty {
